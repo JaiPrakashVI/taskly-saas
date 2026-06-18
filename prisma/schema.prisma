@@ -1,0 +1,59 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// User model for freelance project owners
+model User {
+  id        String    @id @default(uuid())
+  email     String    @unique
+  password  String    // Hashed with bcrypt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  projects  Project[]
+}
+
+// Project model representing client contracts/jobs
+model Project {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  status      String    @default("NOT_STARTED") // NOT_STARTED, IN_PROGRESS, COMPLETED
+  startDate   DateTime?
+  endDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime? // Nullable field for Soft Delete in Phase 2
+  ownerId     String
+  owner       User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+  tasks       Task[]
+
+  // Indexes to speed up queries by project status and scope results to owners
+  @@index([ownerId])
+  @@index([status])
+}
+
+// Task model representing individual deliverables/todo items within a project
+model Task {
+  id          String    @id @default(uuid())
+  name        String
+  description String?
+  priority    String    @default("MEDIUM")      // LOW, MEDIUM, HIGH
+  status      String    @default("PENDING")     // PENDING, IN_PROGRESS, COMPLETED
+  dueDate     DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  deletedAt   DateTime? // Nullable field for Soft Delete in Phase 2
+  projectId   String
+  project     Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  // Indexes to optimize sorting and filtering tasks by parent project, status, priority, and due date
+  @@index([projectId])
+  @@index([status])
+  @@index([priority])
+  @@index([dueDate])
+}

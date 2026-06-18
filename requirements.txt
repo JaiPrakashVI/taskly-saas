@@ -1,0 +1,80 @@
+========================================================================
+TASKLY - PROJECT & TASK MANAGEMENT FOR FREELANCERS
+Functional & Technical Requirements Specification
+========================================================================
+
+1. PRODUCT OVERVIEW
+------------------
+Taskly is a minimal, opinionated project and task management platform designed 
+specifically for freelancers managing multiple client deliverables. It prioritizes 
+visual simplicity, security, speed, and standard design conventions.
+
+2. SYSTEM ARCHITECTURE
+---------------------
+* Frontend: React SPA, Vite, TypeScript, TailwindCSS, TanStack Query (React Query)
+* Backend: Node.js, Express, TypeScript, Prisma ORM
+* Database: PostgreSQL (Neon Server)
+* Authentication: JWT (JSON Web Tokens) with client-side localStorage persistence
+
+3. USER AUTHENTICATION & SECURITY
+--------------------------------
+* Registration:
+  - Default landing page for unauthenticated users.
+  - Required fields: Email address, Password, Confirm Password.
+  - Password rules: Minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, and 1 number.
+  - Prevents duplicate email sign-ups.
+* Login:
+  - Authenticates user and returns a signed JWT.
+  - Features a "Sign In" link from the register page.
+* Rate Limiting:
+  - Register route limited to 5 requests per 15 minutes per IP.
+  - Login route limited to 10 requests per 15 minutes per IP.
+* Demo Access:
+  - "View Demo Workspace" button on the Register page logs users in instantly with pre-seeded demo account credentials (demo@taskly.app / TasklyDemo@2026).
+* Session Expiration:
+  - Handles expired tokens (401 Unauthorized responses) by cleaning local storage and redirecting users to the login screen with an expiration notice.
+
+4. PROJECT MANAGEMENT (OWNER-SCOPED CRUD)
+----------------------------------------
+* Create: Freelancers can add new client projects with a Name, Description, Status, Start Date, and End Date.
+* Read: Users can view a paginated list of their own projects (10 per page).
+* Update: Users can edit project details.
+* Delete: Supports Soft Delete. Deleting a project sets a `deletedAt` timestamp in the database, hiding it from frontend views without purging the data.
+* Isolation: Complete owner-scoped isolation. Authenticated users cannot read, modify, or delete another user's projects.
+* Search & Filter:
+  - Case-insensitive search by project name.
+  - Filter projects by status (e.g., PLANNED, IN_PROGRESS, COMPLETED).
+  - Sort projects by Newest, Oldest, or Alphabetical Name.
+
+5. TASK MANAGEMENT (DELIVERABLES)
+---------------------------------
+* Tasks exist as child deliverables belonging to a parent project.
+* Create: Users can add tasks with Name, Description, Priority (LOW, MEDIUM, HIGH), Status (PENDING, IN_PROGRESS, COMPLETED), and Due Date.
+* Soft Delete: Deleting a task marks `deletedAt` without hard purging.
+* Status Toggle:
+  - Interactive checkbox to quickly mark tasks as complete or incomplete.
+  - Employs Optimistic UI: status updates reflect instantly on screen, automatically rolling back only if the API call fails.
+* Sorting & Badging:
+  - Filter tasks by status, priority, and parent project.
+  - Sort tasks by Due Date, Priority, or creation date (Newest).
+  - Urgency badges on UI: "Overdue", "Due Today", and "Completed".
+
+6. ANALYTICS DASHBOARD
+----------------------
+* Main Hub: Summarizes ongoing freelancer work at a glance.
+* Deliverable Status Chart:
+  - Center-labeled Recharts Doughnut chart rendering "X% Completed" status.
+  - Side-by-side card layout featuring status indicators, item counts, and relative percentages (e.g. Completed: 8 (57%)).
+  - Grid summary metrics for Done, Pending, and Active items.
+* Recent Items Widget:
+  - Lists the 5 most recently created active tasks.
+* Smart Insights Widget:
+  - Renders a dynamic text summary comment based on current completion stats.
+
+7. UX & DESIGN GUIDELINES
+-------------------------
+* Aesthetic: Minimalist Notion/Linear-inspired interface.
+* Color Palette: White background, slate/gray surfaces, blue accent colors (brand-500).
+* Typography: Sentence-case form labels with medium font weights and clean spacing.
+* Input Spacing: Standard icon paddings (pl-10) to prevent text/icon overlap.
+* Exclusions: No neon glows, heavy shadows, flashy gradients, or glassmorphic designs.
