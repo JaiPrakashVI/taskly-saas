@@ -405,11 +405,11 @@ const TaskList: React.FC = () => {
                 return (
                   <li
                     key={task.id}
-                    className={`flex items-center justify-between gap-4 p-4 transition-colors hover:bg-slate-50/50 ${
+                    className={`flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 p-4 transition-colors hover:bg-slate-50/50 ${
                       isCompleted ? 'bg-slate-50/20' : ''
                     }`}
                   >
-                    <div className="flex items-start gap-3 min-w-0 flex-1">
+                    <div className="flex items-start gap-3 min-w-0 w-full md:w-auto">
                       {/* Checkbox completing task */}
                       <button
                         onClick={() => handleToggleComplete(task)}
@@ -439,7 +439,7 @@ const TaskList: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3.5 shrink-0 text-xs">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3.5 ml-8 md:ml-0 md:shrink-0 text-xs">
                       {/* Priority badge */}
                       <span className={`rounded border px-2 py-0.5 font-medium ${getPriorityStyle(task.priority)}`}>
                         {task.priority}

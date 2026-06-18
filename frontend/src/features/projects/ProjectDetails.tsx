@@ -394,7 +394,7 @@ const ProjectDetails: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-4 text-xs text-slate-500 border-l border-slate-100 pl-4">
+          <div className="flex items-center gap-4 text-xs text-slate-500 md:border-l md:border-slate-100 md:pl-4 mt-2 md:mt-0">
             <div>
               <span className="block font-semibold uppercase tracking-wider text-slate-400">Start Date</span>
               <span className="mt-1 block font-medium text-slate-700">
@@ -547,11 +547,11 @@ const ProjectDetails: React.FC = () => {
                 return (
                   <li
                     key={task.id}
-                    className={`flex items-center justify-between gap-4 p-4 transition-colors hover:bg-slate-50/50 ${
+                    className={`flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-4 p-4 transition-colors hover:bg-slate-50/50 ${
                       isCompleted ? 'bg-slate-50/20' : ''
                     }`}
                   >
-                    <div className="flex items-start gap-3 min-w-0 flex-1">
+                    <div className="flex items-start gap-3 min-w-0 w-full md:w-auto">
                       {/* Checkbox completing task */}
                       <button
                         onClick={() => handleToggleComplete(task)}
@@ -576,7 +576,7 @@ const ProjectDetails: React.FC = () => {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-3.5 shrink-0 text-xs">
+                    <div className="flex flex-wrap items-center gap-2 md:gap-3.5 ml-8 md:ml-0 md:shrink-0 text-xs">
                       {/* Priority badge */}
                       <span className={`rounded border px-2 py-0.5 font-medium ${getPriorityStyle(task.priority)}`}>
                         {task.priority}
