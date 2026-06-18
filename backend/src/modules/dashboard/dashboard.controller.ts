@@ -127,7 +127,7 @@ export const getDashboardData = async (req: RequestWithUser, res: Response): Pro
     const activities: any[] = [];
 
     // Process task updates
-    latestTasks.forEach((task) => {
+    latestTasks.forEach((task: any) => {
       // Check if task was created vs updated (allow a 2 second buffer)
       const timeDiff = Math.abs(task.createdAt.getTime() - task.updatedAt.getTime());
       const isCreated = timeDiff < 2000;
@@ -161,7 +161,7 @@ export const getDashboardData = async (req: RequestWithUser, res: Response): Pro
     });
 
     // Process project updates
-    latestProjects.forEach((proj) => {
+    latestProjects.forEach((proj: any) => {
       const timeDiff = Math.abs(proj.createdAt.getTime() - proj.updatedAt.getTime());
       const isCreated = timeDiff < 2000;
 

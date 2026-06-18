@@ -46,6 +46,14 @@ const getProjects = async (req, res) => {
         const [projects, totalProjects] = await db_1.default.$transaction([
             db_1.default.project.findMany({
                 where: whereClause,
+                include: {
+                    tasks: {
+                        where: { deletedAt: null },
+                        select: {
+                            status: true,
+                        },
+                    },
+                },
                 orderBy,
                 skip,
                 take: limit,
@@ -54,9 +62,23 @@ const getProjects = async (req, res) => {
                 where: whereClause,
             }),
         ]);
+        // Compute progress rates for each project card in-memory
+        const projectsWithStats = projects.map((project) => {
+            const activeTasks = project.tasks || [];
+            const totalTasksCount = activeTasks.length;
+            const completedTasksCount = activeTasks.filter((t) => t.status === 'COMPLETED').length;
+            const percentage = totalTasksCount > 0 ? Math.round((completedTasksCount / totalTasksCount) * 100) : 0;
+            const { tasks, ...projectDetails } = project;
+            return {
+                ...projectDetails,
+                totalTasks: totalTasksCount,
+                completedTasks: completedTasksCount,
+                completionPercentage: percentage,
+            };
+        });
         const totalPages = Math.ceil(totalProjects / limit);
         (0, response_1.sendSuccess)(res, {
-            projects,
+            projects: projectsWithStats,
             pagination: {
                 total: totalProjects,
                 page: Number(page),

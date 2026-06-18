@@ -8,7 +8,7 @@ const bcrypt_1 = __importDefault(require("bcrypt"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const db_1 = __importDefault(require("../../config/db"));
 const response_1 = require("../../utils/response");
-const JWT_SECRET = process.env.JWT_SECRET || 'keel_default_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET || 'taskly_default_secret_key';
 const SALT_ROUNDS = 10;
 // POST /api/auth/register
 const register = async (req, res) => {

@@ -17,7 +17,7 @@ const authenticateToken = (req, res, next) => {
         return;
     }
     try {
-        const jwtSecret = process.env.JWT_SECRET || 'keel_default_secret_key';
+        const jwtSecret = process.env.JWT_SECRET || 'taskly_default_secret_key';
         const decoded = jsonwebtoken_1.default.verify(token, jwtSecret);
         // Attach the decoded token payload to the request for subsequent handlers
         req.user = decoded;

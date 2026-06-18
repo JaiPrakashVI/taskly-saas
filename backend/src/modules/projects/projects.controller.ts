@@ -67,10 +67,10 @@ export const getProjects = async (req: RequestWithUser, res: Response): Promise<
     ]);
 
     // Compute progress rates for each project card in-memory
-    const projectsWithStats = projects.map((project) => {
+    const projectsWithStats = projects.map((project: any) => {
       const activeTasks = project.tasks || [];
       const totalTasksCount = activeTasks.length;
-      const completedTasksCount = activeTasks.filter((t) => t.status === 'COMPLETED').length;
+      const completedTasksCount = activeTasks.filter((t: any) => t.status === 'COMPLETED').length;
       const percentage = totalTasksCount > 0 ? Math.round((completedTasksCount / totalTasksCount) * 100) : 0;
 
       const { tasks, ...projectDetails } = project;
