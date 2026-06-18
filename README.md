@@ -232,7 +232,7 @@ All responses use a standardized JSON wrapper:
 3. **Configure Environment variables:**
    Create `.env` at the root and inside the `backend/` folder:
    ```env
-   DATABASE_URL="postgresql://neondb_owner:npg_Ph0mzTf4iBkK@ep-polished-mud-aiyivle2.c-4.us-east-1.aws.neon.tech/neondb?sslmode=require"
+   DATABASE_URL="Create a Posgress URL"
    PORT=5000
    JWT_SECRET="your_jwt_secret_key"
    NODE_ENV="development"
