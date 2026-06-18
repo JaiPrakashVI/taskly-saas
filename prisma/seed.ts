@@ -34,13 +34,13 @@ async function main() {
   });
   console.log(`[Taskly Seeder] Created Demo User: ${demoUser.email}`);
 
-  // 4. Create 4 realistic small-business freelance projects
+  // 4. Create 4 simplified projects
   
-  // Project 1: Aarav Furnishings (Completed website contract)
+  // Project 1: Website Design (Completed)
   const projectAarav = await prisma.project.create({
     data: {
-      name: 'Aarav Furnishings',
-      description: 'E-commerce showroom site showcasing handmade wooden furniture catalog and local shipping rate calculator.',
+      name: 'Website Design',
+      description: 'Clean marketing website layout.',
       status: 'COMPLETED',
       startDate: new Date('2026-05-01'),
       endDate: new Date('2026-06-10'),
@@ -48,11 +48,11 @@ async function main() {
     },
   });
 
-  // Project 2: Coastline Cafe (In Progress branding & website)
+  // Project 2: Branding Package (In Progress)
   const projectCoastline = await prisma.project.create({
     data: {
-      name: 'Coastline Cafe',
-      description: 'Branding package and one-page menu website with dynamic digital ordering integration.',
+      name: 'Branding Package',
+      description: 'Logo design and brand guides.',
       status: 'IN_PROGRESS',
       startDate: new Date('2026-06-01'),
       endDate: new Date('2026-07-15'),
@@ -60,11 +60,11 @@ async function main() {
     },
   });
 
-  // Project 3: Tiruvallur Sports Arena (In Progress client reservation app)
+  // Project 3: Mobile App (In Progress)
   const projectArena = await prisma.project.create({
     data: {
-      name: 'Tiruvallur Sports Arena',
-      description: 'Building custom court reservation and membership scheduling calendar portal for local matches.',
+      name: 'Mobile App',
+      description: 'Booking app for reservations.',
       status: 'IN_PROGRESS',
       startDate: new Date('2026-05-15'),
       endDate: new Date('2026-07-30'),
@@ -72,11 +72,11 @@ async function main() {
     },
   });
 
-  // Project 4: Urban Edge Salon (Not Started layout design)
+  // Project 4: Marketing Campaign (Not Started)
   const projectSalon = await prisma.project.create({
     data: {
-      name: 'Urban Edge Salon',
-      description: 'UX wireframing and design layouts for service menus and stylist booking pages.',
+      name: 'Marketing Campaign',
+      description: 'Ad designs and social media layouts.',
       status: 'NOT_STARTED',
       startDate: new Date('2026-07-01'),
       endDate: new Date('2026-08-15'),
@@ -84,32 +84,32 @@ async function main() {
     },
   });
 
-  console.log('[Keel Seeder] Created 4 client projects.');
+  console.log('[Taskly Seeder] Created 4 client projects.');
 
   // 5. Seed tasks spanning different due dates relative to June 18, 2026
 
-  // Tasks for Aarav Furnishings (Completed)
+  // Tasks for Website Design (Completed)
   await prisma.task.createMany({
     data: [
       {
-        name: 'Showroom Catalog Layout',
-        description: 'Design dynamic catalog pages for sectional sofas and teak dining sets.',
+        name: 'Wireframes',
+        description: 'Create page layout wireframes.',
         priority: 'MEDIUM',
         status: 'COMPLETED',
         dueDate: new Date('2026-05-10'),
         projectId: projectAarav.id,
       },
       {
-        name: 'Shipping Rate API Integration',
-        description: 'Map local shipping courier charges based on pin code distance.',
+        name: 'API Setup',
+        description: 'Integrate third-party API service.',
         priority: 'HIGH',
         status: 'COMPLETED',
         dueDate: new Date('2026-06-05'),
         projectId: projectAarav.id,
       },
       {
-        name: 'Domain Mapping & Live Deployment',
-        description: 'Connect aaravfurnishings.com domain and configure secure SSL certificates.',
+        name: 'Deploy Site',
+        description: 'Publish live pages and map domain.',
         priority: 'HIGH',
         status: 'COMPLETED',
         dueDate: new Date('2026-06-09'),
@@ -118,36 +118,36 @@ async function main() {
     ],
   });
 
-  // Tasks for Coastline Cafe (In Progress)
+  // Tasks for Branding Package (In Progress)
   await prisma.task.createMany({
     data: [
       {
-        name: 'Brand Typography & Moodboard',
-        description: 'Review coastal color schemes and select clean typography systems.',
+        name: 'Moodboard',
+        description: 'Review color schemes and typography.',
         priority: 'MEDIUM',
         status: 'COMPLETED',
         dueDate: new Date('2026-06-05'),
         projectId: projectCoastline.id,
       },
       {
-        name: 'Menu Card Layout Design',
-        description: 'Create print-ready PDF and matching mobile menu layout wireframes.',
+        name: 'Logo Design',
+        description: 'Draft logo concepts for review.',
         priority: 'HIGH',
         status: 'PENDING',
-        dueDate: new Date('2026-06-12'), // OVERDUE (June 12 is before June 18)
+        dueDate: new Date('2026-06-12'), // OVERDUE
         projectId: projectCoastline.id,
       },
       {
-        name: 'QR Ordering Setup',
-        description: 'Generate dynamic QR code linking table seating to menu parameters.',
+        name: 'Print Assets',
+        description: 'Design printable brand assets.',
         priority: 'HIGH',
         status: 'IN_PROGRESS',
         dueDate: new Date('2026-06-18'), // DUE TODAY
         projectId: projectCoastline.id,
       },
       {
-        name: 'Menu Website Draft Submission',
-        description: 'Present draft hosting URL to client for copy signoff.',
+        name: 'Draft Review',
+        description: 'Present brand draft to client.',
         priority: 'MEDIUM',
         status: 'PENDING',
         dueDate: new Date('2026-06-22'), // DUE THIS WEEK
@@ -156,36 +156,36 @@ async function main() {
     ],
   });
 
-  // Tasks for Tiruvallur Sports Arena (In Progress)
+  // Tasks for Mobile App (In Progress)
   await prisma.task.createMany({
     data: [
       {
-        name: 'Court Booking Layout Mockups',
-        description: 'Submit mobile wireframes for choosing court timeslots.',
+        name: 'App Mockups',
+        description: 'Design UI screen mockups.',
         priority: 'HIGH',
         status: 'COMPLETED',
         dueDate: new Date('2026-05-25'),
         projectId: projectArena.id,
       },
       {
-        name: 'Calendar Sync Integration',
-        description: 'Sync booking reservations with staff Google Calendars.',
+        name: 'Calendar Sync',
+        description: 'Sync events to calendar.',
         priority: 'MEDIUM',
         status: 'PENDING',
         dueDate: new Date('2026-06-15'), // OVERDUE
         projectId: projectArena.id,
       },
       {
-        name: 'Payment Checkout Security Audit',
-        description: 'Audit SSL token exchanges for UPI and card checkout endpoints.',
+        name: 'Payment Flow',
+        description: 'Implement secure checkout flow.',
         priority: 'HIGH',
         status: 'IN_PROGRESS',
         dueDate: new Date('2026-06-18'), // DUE TODAY
         projectId: projectArena.id,
       },
       {
-        name: 'Test membership coupons code',
-        description: 'Verify coupon discounts correctly calculate checkouts.',
+        name: 'Coupon Codes',
+        description: 'Test discount code logic.',
         priority: 'LOW',
         status: 'PENDING',
         dueDate: new Date('2026-06-24'), // DUE THIS WEEK
@@ -194,28 +194,28 @@ async function main() {
     ],
   });
 
-  // Tasks for Urban Edge Salon (Not Started)
+  // Tasks for Marketing Campaign (Not Started)
   await prisma.task.createMany({
     data: [
       {
-        name: 'Moodboard & Competitor Research',
-        description: 'Review boutique salon pages and catalog booking layouts.',
+        name: 'Research',
+        description: 'Analyze competitor campaigns.',
         priority: 'LOW',
         status: 'PENDING',
         dueDate: new Date('2026-07-05'),
         projectId: projectSalon.id,
       },
       {
-        name: 'Stylist Slots Mockups',
-        description: 'Draft wireframes for choosing specific stylists.',
+        name: 'Social Graphics',
+        description: 'Design templates for posts.',
         priority: 'MEDIUM',
         status: 'PENDING',
         dueDate: new Date('2026-07-10'),
         projectId: projectSalon.id,
       },
       {
-        name: 'Service List Accordion Design',
-        description: 'Design catalog filters for hair, nail, and massage services.',
+        name: 'Ad Layouts',
+        description: 'Draft visual layouts for ads.',
         priority: 'LOW',
         status: 'PENDING',
         dueDate: new Date('2026-07-15'),
