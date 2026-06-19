@@ -14,15 +14,15 @@
 
 ### Dashboard
 *A minimal dashboard summarizing ongoing client work, completed tasks ratio, and recent items.*
-*(Image placeholder)*
+![Dashboard](docs/screenshots/dashboard.png)
 
 ### Projects
 *Freelancer-focused view displaying active client projects, pipeline statuses, and contracts.*
-*(Image placeholder)*
+![Projects](docs/screenshots/projects.png)
 
 ### Tasks
 *Deliverables list with urgency badges (Overdue, Due Today, Completed) and status toggles.*
-*(Image placeholder)*
+![Tasks](docs/screenshots/tasks.png)
 
 ---
 
