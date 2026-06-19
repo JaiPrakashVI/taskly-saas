@@ -4,11 +4,11 @@ Taskly is a project operating system built for independent freelancers who manag
 
 The platform demonstrates modern full-stack engineering practices including secure authentication, relational data modeling, optimistic UI updates, API protection, and production-oriented deployment workflows.
 
-docs/screenshots/gif.gif
+![Demo](docs/screenshots/gif.gif)
 
 ## Live Demo
 
--Live Link: https://taskly-saas.vercel.app
+## -Live Link: https://taskly-saas.vercel.app
 - Demo Account: `demo@taskly.app` (one-click login, no typing required)
 
 ## Screenshots
