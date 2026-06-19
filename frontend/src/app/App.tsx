@@ -80,8 +80,8 @@ const MainLayout: React.FC = () => {
 
   const email = user?.email || 'demo@taskly.app';
   const isDemo = email === 'demo@taskly.app';
-  const initials = isDemo ? 'JP' : email.substring(0, 2).toUpperCase();
-  const displayName = isDemo ? 'Jai Prakash' : email.split('@')[0].replace(/[^a-zA-Z]/g, ' ');
+  const initials = isDemo ? 'D' : email.substring(0, 2).toUpperCase();
+  const displayName = isDemo ? 'Demo' : email.split('@')[0].replace(/[^a-zA-Z]/g, ' ');
 
   return (
     <div className="flex h-screen w-screen overflow-hidden bg-[#f8fafc] flex-col md:flex-row">
