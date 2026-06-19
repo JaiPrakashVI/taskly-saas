@@ -6,8 +6,7 @@ The platform demonstrates modern full-stack engineering practices including secu
 
 ## Live Demo
 
-- Frontend: https://taskly-app-demo.vercel.app (Placeholder)
-- Backend: https://taskly-api-demo.render.com (Placeholder)
+-Live Link: https://taskly-saas.vercel.app
 - Demo Account: `demo@taskly.app` (one-click login, no typing required)
 
 ## Screenshots
@@ -23,6 +22,24 @@ Freelancer-focused view of active client projects, pipeline status, and contract
 ### Tasks
 Deliverables list with urgency badges (Overdue, Due Today, Completed).
 (Image placeholder)
+
+## Repository Structure
+
+```
+taskly/
+├── backend/
+│   ├── src/
+│   ├── prisma/
+│   └── .gitignore
+├── frontend/
+│   ├── src/
+│   └── .gitignore
+├── docs/
+│   └── er-diagram.png
+├── docker-compose.yml
+├── .gitignore
+└── README.md
+```
 
 ## Table of Contents
 
@@ -241,23 +258,6 @@ Response (200 OK):
 }
 ```
 
-## Repository Structure
-
-```
-taskly/
-├── backend/
-│   ├── src/
-│   ├── prisma/
-│   └── .gitignore
-├── frontend/
-│   ├── src/
-│   └── .gitignore
-├── docs/
-│   └── er-diagram.png
-├── docker-compose.yml
-├── .gitignore
-└── README.md
-```
 
 ## Installation
 
