@@ -68,26 +68,7 @@ taskly/
 - **Optimistic UI**: Status toggles update instantly via TanStack Query cache writes, with automatic rollback on request failure.
 - **Soft Delete**: Deletes are recorded with a `deletedAt` timestamp rather than removing rows, preserving historical client data while hiding it from active views.
 - **Demo Mode**: A single click logs into a pre-seeded freelancer profile, removing friction for reviewers and recruiters.
-
-## Architecture
-
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                             CLIENT (Vite)                              │
-│  React Hooks ──► AuthContext ──► Axios Client ──► TanStack Query Cache │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                     │ HTTP / HTTPS (JSON)
-┌───────────────────────────────────▼────────────────────────────────────┐
-│                             API (Node.js)                              │
-│  Express Server ──► Security Middleware ──► Controller Actions         │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                     │ Prisma Client
-┌───────────────────────────────────▼────────────────────────────────────┐
-│                           DATABASE (Neon)                              │
-│  PostgreSQL (Indexed columns: ownerId, status, priority, dueDate)      │
-└────────────────────────────────────────────────────────────────────────┘
-```
-
+### Architecture
 ### Frontend Architecture
 
 - **State Management**: React Context (`AuthContext.tsx`) manages session state. TanStack Query serves as the server-state cache, handling synchronization, background refetching, and optimistic mutations.
@@ -151,11 +132,6 @@ Prisma provides type-safe database access, a structured migration workflow, and 
 **Why JWT Authentication?**
 JSON Web Tokens enable stateless authentication that scales cleanly across distributed deployments, removing the need for server-side session storage.
 
-**Why TanStack Query?**
-TanStack Query handles server-state synchronization, caching, and optimistic UI updates declaratively, reducing the amount of manual state management code required on the client.
-
-**Why Soft Deletes?**
-Freelancers need an auditable history of client work even after a project is archived. A `deletedAt` timestamp preserves records for historical reporting while excluding them from active views.
 
 ## Security Measures
 
